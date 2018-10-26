@@ -1,0 +1,31 @@
+body {
+  color: White;
+  text-align: center;
+  background: url(https://images.pexels.com/photos/1118873/pexels-photo-1118873.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260) no-repeat;
+  background-size: cover;
+}
+
+label, input, p {
+  width: 100%;
+}
+
+h1 {
+  margin: 10px 0;
+  font-size: 3em;
+}
+input {
+  margin: 10px 0;
+}
+
+#credit {
+  display: none;
+}
+
+.container {
+  display: inline-block;
+  width: 90%;
+}
+.forecast {
+  display: inline-block;
+  width: 90%;
+}
