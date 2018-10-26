@@ -1,4 +1,5 @@
 <?php
+
 //Define constants
 define('LOCATION', 'location');
 define("CURRENT", "current");
@@ -65,25 +66,20 @@ function generateForecast($weatherInfo){
 	date_default_timezone_set('UTC');
 	$prevDay = '';
 	for ($i=0; $i < count($weatherInfo['list']); $i++) {
-		$container = false;
-		$date = date("g a e"/*"F j, Y, g:i a"*/, $weatherInfo['list'][$i]['dt']); //Unix to Readable
+		$date = date("g a e", $weatherInfo['list'][$i]['dt']); //Unix to Readable
 		$low = 'Min Temp: ' . ($weatherInfo['list'][$i]['main']['temp_min'] - 273) . ' &#8451;';
 		$high = 'Max Temp: ' . ($weatherInfo['list'][$i]['main']['temp_max'] - 273) . ' &#8451;';
 		$weather = 'Weather: ' . $weatherInfo['list'][$i]['weather'][0]['description'];
 
 		$dateDate = '<div class="forecast">';
 
-/* Conditions to add end of container tag */
-		if ($i === 6) {
-			$container = true;
-		}
-		if ($i >= 7 && ($i+1) % 8 == 0) {
-			$container = true;
-		}
-/* ___________________________________ */
-
 		if ($prevDay !== date("l", $weatherInfo['list'][$i]['dt'])) {
-			$dateDate = $dateDate . '<h4>' . date("l", $weatherInfo['list'][$i]['dt']) . '</h4>' . '<br>';
+			$day = '<h4>' . date("l", $weatherInfo['list'][$i]['dt']) . '</h4>' . '<br>';
+			if ($i === 0) {
+				$dateDate = '<div class="day">' . $day . $dateDate;
+			}else {
+				$dateDate = '</div>' . '<div class="day">' . $day .  $dateDate;
+			}
 		}
 
 		$dateDate = $dateDate .
@@ -93,22 +89,10 @@ function generateForecast($weatherInfo){
 			$weather . '<br>' .
 			'</div>' . '<br>';
 
-/* Conditions to add container tag */
-		if ($i === 0 || ($i >= 7 && ($i+2) % 8 == 0)) {
-			if ($container) {
-				$dateDate = '</div>' . "<div class='container'>" .  $dateDate;
-				$container = false;
-			}else {
-				$dateDate = "<div class='container'>" .  $dateDate;
-			}
-		}
-/* ___________________________________ */
-
 		$data = $data . $dateDate;
 		$prevDay = date("l", $weatherInfo['list'][$i]['dt']);
 	}
-
-	$forecast = $title . $data;
+	$forecast = '<div class="container">' . $title . $data . '</div>' . '</div>';
 
 	return $forecast;
 }

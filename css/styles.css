@@ -1,3 +1,8 @@
+/* Remove bar */
+img[src*="https://cdn.rawgit.com/000webhost/logo/e9bd13f7/footer-powered-by-000webhost-white2.png"] {
+  display: none;
+}
+
 body {
   color: White;
   text-align: center;
@@ -22,10 +27,24 @@ input {
 }
 
 .container {
-  display: inline-block;
-  width: 90%;
+  width: 95%;
+  margin: auto;
+  background: rgba(200,200,200, 0.1);
 }
-.forecast {
+
+.day {
+  text-align: center;
   display: inline-block;
-  width: 90%;
+  width: 95%;
+  background: rgba(100,100,100, 0.5);
+  margin: 10px 10px;
+}
+
+.forecast {
+  /* display: inline-block; */
+  float: left;
+  margin: 5px 5px;
+  width: 15%;
+  min-width: 50px;
+  background: rgba(50,50,255,0.7);
 }
