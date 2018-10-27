@@ -1,6 +1,6 @@
 <?php
 
-define('API_KEY', 'a0dd02d09d15b5f2a87faac859312aaf');
+define('API_KEY', 'Get your API key by signing up at https://openweathermap.org/api');
 
 function inputType($input) {
 	$type = 0;
