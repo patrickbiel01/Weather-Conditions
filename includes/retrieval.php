@@ -13,7 +13,7 @@ function cUrl($url) {
 }
 
 function retrieveLocation($input){
-	$coordinate = inputToCoordinate(str_split($input)); //string -> char[]
+	$coordinate = textToCoordinate($input);
 	$longitude = $coordinate['long'];
 	$latitude =  $coordinate['lat'];
 

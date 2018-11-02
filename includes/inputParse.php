@@ -5,61 +5,52 @@ function containsNumber($char) {
 	return $numbersPresent;
 }
 
-function findNumber($chars, $start) {
-	$number = [];
-	$end = 0;
-	$numberReached = false;
+function textToCoordinate($input){
+	//Declare coordinate pair
+	$longitude = [];
+	$latitude = [];
 
-	//Collect user input for longitude
-	for ($i=$start; $i < count($chars); $i++) {
-		if (containsNumber($chars[$i])) {
-			$numberReached = true;
+	//Cast input from string -> char[]
+	$input = str_split($input);
+
+	//Add numerical chars for longitude
+	$end = 1;
+	foreach ($input as $char) {
+		if ($char == ','){
+			break;
 		}
-		if ($numberReached) {
-			if (containsNumber($chars[$i])) {
-				array_push($number, $chars[$i]);
-			}else {
-				$end = $i;
-				$numberReached = false;
-				break;
-			}
+		if (!containsNumber($char)) {
+			continue;
 		}
+
+		array_push($longitude, $char);
+		$end++;
 	}
 
-	return [$number, $end];
-}
+	//Add numerical chars for latitude
+	while ($end< count($input)) {
+		$end++;
+		if ($input[$end] == '}'){
+			break;
+		}
+		if (!containsNumber($input[$end])) {
+			continue;
+		}
 
-function charsToNumber($chars){
-	$nums = [];
-
-	for ($i=0; $i < count($chars); $i++) {
-		array_push($nums, (float)$chars[$i]);
+		array_push($latitude, $input[$end]);
 	}
 
-	return $nums;
+	//Cast char[] -> string
+	$longitude = implode($longitude);
+	$latitude = implode($latitude);
+	//Cast string -> float
+	$longitude = floatval($longitude);
+	$latitude = floatval($latitude);
 
-}
+    //Return dictionary of coordinates
+	return [
+    "long" => $latitude,
+    "lat" => $longitude
+	];
 
-function covertToValue($nums){
-  $length = count($nums);
-  $value = 0;
-
-  for ($i=0; $i < $length; $i++) {
-    $value += $nums[$i] * pow(10, $length - $i - 1);  //10^(length-i-1)
-  }
-
-  return $value;
-
-}
-
-
-function inputToCoordinate($chars){
-  $latNum = findNumber($chars, 0);
-	$latitude = covertToValue(charsToNumber($latNum[0]));
-	$longitude =  covertToValue(charsToNumber(findNumber($chars, $latNum[1])[0]));
-
-  return [
-    "long" => $longitude,
-    "lat" => $latitude
-	];;
 }

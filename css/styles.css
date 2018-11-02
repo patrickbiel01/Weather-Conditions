@@ -3,32 +3,72 @@ img[src*="https://cdn.rawgit.com/000webhost/logo/e9bd13f7/footer-powered-by-000w
   display: none;
 }
 
+    /*
+Global Element Styles
+    */
+
 body {
+  /*position: relative;*/
   color: White;
   text-align: center;
-  background: url(https://images.pexels.com/photos/1118873/pexels-photo-1118873.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260) no-repeat;
+  background: url(https://images.pexels.com/photos/912110/pexels-photo-912110.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940) no-repeat;
   background-size: cover;
 }
 
 label, input, p {
   width: 100%;
 }
-
 h1 {
   margin: 10px 0;
   font-size: 3em;
+}
+h2 {
+    font-size: 2em;
+}
+h3 {
+    font-size: 2em;
+}
+h4 {
+    font-size: 1.9em;
 }
 input {
   margin: 10px 0;
 }
 
-#credit {
-  display: none;
+    /*
+Error Message Style
+    */
+.error {
+    color: MistyRose;
+    font-size: 1.5em;
 }
 
+    /*
+Credit Styles
+    */
+#credit {
+  display: inline-block;
+  /*position: absolute;*/
+  /*bottom: -65px;*/
+  /*left: 0;*/
+  /*right: 0;*/
+  width: 100%;
+  margin: 20px 0px;
+  padding: 5px;
+  /*background: rgba(0,0,255, 0.2);*/
+  color: Black;
+}
+#credit a {
+    color: BLack;
+}
+
+    /*
+Forecast Styles
+    */
 .container {
   width: 95%;
   margin: auto;
+  background: rgb(200,200,200);
   background: rgba(200,200,200, 0.1);
 }
 
@@ -36,15 +76,17 @@ input {
   text-align: center;
   display: inline-block;
   width: 95%;
+  background: rgb(100,100,100);
   background: rgba(100,100,100, 0.5);
   margin: 10px 10px;
 }
 
 .forecast {
-  /* display: inline-block; */
   float: left;
   margin: 5px 5px;
+  padding: 10px;
   width: 15%;
-  min-width: 50px;
-  background: rgba(50,50,255,0.7);
+  min-width: 75px;
+  background: rgb(100,100,255);
+  background: rgba(0,0,255,0.2);
 }
